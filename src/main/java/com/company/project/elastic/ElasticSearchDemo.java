@@ -8,4 +8,7 @@ package com.company.project.elastic;
  * @Version 1.0
  **/
 public class ElasticSearchDemo {
+
+
+
 }

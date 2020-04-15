@@ -1,9 +1,24 @@
-  spring.profiles.active=dev
-  # 所有环境通用的配置，放在这里
-
+spring:
+  profiles:
+    active: dev
+    # 所有环境通用的配置，放在这里
   # 404 交给异常处理器处理
-  spring:
-    mvc:
-      throw-exception-if-no-handler-found: true
-    resources:
-      add-mappings: false
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+
+# elastic search配置
+elastic:
+  hosts: localhost
+  port: 9200
+  # 使用的协议
+  schema: "http"
+  # 连接超时时间
+  connectTimeOut: 1000
+  socketTimeOut: 30000
+  connectionRequestTimeOut: 500
+  # 最大连接数
+  maxConnectNum: 100
+  # 最大路由数
+  maxConnectPerRoute: 100
