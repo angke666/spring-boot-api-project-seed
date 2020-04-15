@@ -45,7 +45,7 @@ public class ElasticIndexPersonServiceImpl implements IElasticIndexService<Perso
         XContentBuilder builder = XContentFactory.jsonBuilder();
         builder.startObject()
                 .startObject("properties")
-                    .startArray("message")
+                    .startObject("message")
                         .field("name", "text")
                     .endObject()
                 .endObject()
