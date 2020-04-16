@@ -2,9 +2,9 @@ package com.company.project.elastic;
 
 import org.elasticsearch.client.indices.GetIndexResponse;
 import org.elasticsearch.client.indices.GetMappingsResponse;
-import org.elasticsearch.common.xcontent.XContentBuilder;
 
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * @author 钱进
@@ -25,7 +25,7 @@ public interface IElasticIndexService<T extends ElasticBase> {
      * @return
      * @throws IOException
      */
-    XContentBuilder createMappings(T entity) throws IOException;
+    Map<String, Object> createMappings(T entity) throws IOException;
 
     /**
      * 获取index的字段映射配置
@@ -39,6 +39,7 @@ public interface IElasticIndexService<T extends ElasticBase> {
      * 获取index信息
      * @param entity
      * @return
+     * @throws IOException
      */
     GetIndexResponse getIndex(T entity) throws IOException;
 

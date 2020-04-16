@@ -1,6 +1,11 @@
 package com.company.project.elastic;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * @ClassName Person
@@ -14,6 +19,18 @@ public class Person extends ElasticBase {
 
     private Long id;
     private String name;
-    private String number;
+    private int age;
+    private String motto;
+    private String phone;
+    private double money;
+    private String address;
+    private String lon;
+    private String lat;
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    private Date birthDay;
+    private boolean disabled;
+
+    private School school;
+    private List<Job> jobList;
 
 }
