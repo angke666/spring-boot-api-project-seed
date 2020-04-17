@@ -63,7 +63,7 @@ public class ElasticDocumentPersonImpl implements IElasticDocumentService<Person
 
     @Override
     public IndexResponse create(Person entity) throws IOException {
-        Map<String, String> location = new HashMap<>();
+        Map<String, Object> location = new HashMap<>();
         location.put("lon", entity.getLon());
         location.put("lat", entity.getLat());
         JSONObject jsonObject = JSONObject.parseObject(JSON.toJSONString(entity));
@@ -90,7 +90,7 @@ public class ElasticDocumentPersonImpl implements IElasticDocumentService<Person
     public void createBulk(List<Person> entityList) {
         BulkRequest bulkRequest = new BulkRequest();
         for (Person entity : entityList) {
-            Map<String, String> location = new HashMap<>();
+            Map<String, Object> location = new HashMap<>();
             location.put("lon", entity.getLon());
             location.put("lat", entity.getLat());
             JSONObject jsonObject = JSONObject.parseObject(JSON.toJSONString(entity));
@@ -124,7 +124,15 @@ public class ElasticDocumentPersonImpl implements IElasticDocumentService<Person
     @Override
     public UpdateResponse update(Person entity) throws IOException {
         UpdateRequest request = new UpdateRequest(entity.getIndex(), entity.getId().toString());
-        request.doc(JSON.toJSONString(entity), XContentType.JSON);
+        Map<String, Object> location = new HashMap<>();
+        location.put("lon", entity.getLon());
+        location.put("lat", entity.getLat());
+        JSONObject jsonObject = JSONObject.parseObject(JSON.toJSONString(entity));
+        jsonObject.remove("lon");
+        jsonObject.remove("lat");
+        jsonObject.remove("id");
+        jsonObject.put("location", location);
+        request.doc(JSON.toJSONString(jsonObject), XContentType.JSON);
 
         return restHighLevelClient.update(request, RequestOptions.DEFAULT);
     }

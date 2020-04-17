@@ -24,8 +24,8 @@ public class Person extends ElasticBase {
     private String phone;
     private double money;
     private String address;
-    private String lon;
-    private String lat;
+    private double lon;
+    private double lat;
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date birthDay;
     private boolean disabled;
