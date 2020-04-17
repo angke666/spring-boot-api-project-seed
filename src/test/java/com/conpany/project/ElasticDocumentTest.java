@@ -152,7 +152,7 @@ public class ElasticDocumentTest extends Tester {
 //                    .must(QueryBuilders.multiMatchQuery("南充", new String[]{"address", "school.address", "name"}))
                 // es对地理位置的查询非常强大，不光可以查距离 https://www.elastic.co/guide/en/elasticsearch/client/java-api/7.3/java-geo-queries.html
                 .filter(QueryBuilders
-                        // pin.字段名
+                        // 字段名
                         .geoDistanceQuery("location")
                         // 坐标
                         .point(31.657401, 106.082974)
