@@ -6,6 +6,7 @@ import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.client.indices.*;
+import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.rest.RestStatus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -117,6 +118,7 @@ public class ElasticIndexPersonServiceImpl implements IElasticIndexService<Perso
     @Override
     public void create(Person person) throws IOException {
         CreateIndexRequest request = new CreateIndexRequest(person.getIndex());
+        request.settings(Settings.builder().put("index.number_of_shards", 3).put("index.number_of_replicas", 0));
         Map<String, Object> mappings = createMappings(person);
         request.mapping(mappings);
 
